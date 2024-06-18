@@ -1,11 +1,10 @@
 // src/indexe.js
-// import { initMongoDB } from './db/initMongoDB';
+import { initMongoConnection } from './db/initMongoConnection.js';
 import { setupServer } from './server.js';
 
-// const bootstrap = async () => {
-//   await initMongoDB();
-//   setupServer();
-// };
+const bootstrap = async () => {
+  await initMongoConnection();
+  setupServer();
+};
 
-// bootstrap();
-setupServer();
+bootstrap();

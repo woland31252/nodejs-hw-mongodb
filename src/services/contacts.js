@@ -1,8 +1,8 @@
-import ContactsCollection  from '../db/models/Contact.js';
+import ContactsCollection from '../db/models/Contact.js';
 
 const getAllContacts = () => {
-    const contacts = ContactsCollection.find();
-    return contacts;
+  const contacts = ContactsCollection.find();
+  return contacts;
 };
 
 const getContactById = (contactId) => {
@@ -12,11 +12,6 @@ const getContactById = (contactId) => {
 
 const createContact = (payload) => {
   const contact = ContactsCollection.create(payload);
-  return contact;
-};
-
-const deleteContact = (contactId) => {
-  const contact = ContactsCollection.findOneAndDelete({ _id: contactId, });
   return contact;
 };
 
@@ -37,4 +32,15 @@ const updateContact = (contactId, payload, options = {}) => {
   };
 };
 
-export { getAllContacts, getContactById, createContact, deleteContact, updateContact,};
+const deleteContact = (contactId) => {
+  const contact = ContactsCollection.findOneAndDelete({ _id: contactId });
+  return contact;
+};
+
+export {
+  getAllContacts,
+  getContactById,
+  createContact,
+  updateContact,
+  deleteContact,
+};

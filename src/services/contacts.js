@@ -15,9 +15,9 @@ const createContact = (payload) => {
   return contact;
 };
 
-const updateContact = (contactId, payload, options = {}) => {
-  const rawResult = ContactsCollection.findOneAndUpdate(
-    { _id: contactId },
+const updateContact = async (filter, payload, options = {}) => {
+  const rawResult = await ContactsCollection.findOneAndUpdate(
+    filter,
     payload,
     {
       new: true,

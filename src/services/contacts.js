@@ -20,8 +20,6 @@ const updateContact = async (filter, payload, options = {}) => {
     filter,
     payload,
     {
-      // new: true,
-      // runValidators: true,
       includeResultMetadata: true,
       ...options,
     },

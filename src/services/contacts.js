@@ -1,12 +1,25 @@
 import ContactsCollection from '../db/models/Contact.js';
+import calcPaginationData from '../utils/calcPaginationData.js';
 
-const getAllContacts = () => {
-  const contacts = ContactsCollection.find();
-  return contacts;
+const getAllContacts = async ({ page, perPage }) => {
+  const skip = (page - 1) * perPage;
+  const contacts = await ContactsCollection.find().skip(skip).limit(perPage);
+  const totalContacts = await ContactsCollection.find().countDocuments();
+  const { totalPages, nasNextPage, havPrevPage } = calcPaginationData({ total: totalContacts, page, perPage });
+  return {
+    contacts,
+    totalContacts,
+    page,
+    perPage,
+    totalPages,
+    nasNextPage,
+    havPrevPage,
+  };
 };
 
 const getContactById = (contactId) => {
   const contact = ContactsCollection.findById(contactId);
+
   return contact;
 };
 

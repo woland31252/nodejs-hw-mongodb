@@ -9,14 +9,19 @@ import {
   deleteContact,
 } from '../services/contacts.js';
 import parsePaginationParams from "../utils/parsePaginationParams.js";
+import parseSortParams from "../utils/parseSortParams.js";
+import { fieldList } from "../constants/contacts-constants.js";
 
 const getContactsController = async (req, res) => {
   const { query } = req;
   const { page, perPage } = parsePaginationParams(query);
+  const { sortBy, sortOrder } = parseSortParams(query, fieldList);
 
   const contacts = await getAllContacts({
     page,
     perPage,
+    sortBy,
+    sortOrder,
   });
 
       res.json({

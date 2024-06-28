@@ -1,3 +1,5 @@
+// src/utils/validateBody.js
+
 import createHttpError from 'http-errors';
 
 const validateBody = (schema) => async (req, res, next) => {

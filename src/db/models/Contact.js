@@ -1,7 +1,7 @@
 // src/db/models/Contact.js
 
 import { model, Schema } from 'mongoose';
-import { emailRegexp, tipeList } from '../../constants/contacts-constants.js';
+import { emailRegexp, typeList } from '../../constants/contacts-constants.js';
 import { mongooseSaveError, setUpdateSettings } from './hooks.js';
 const contactsSchema = new Schema(
   {
@@ -26,7 +26,7 @@ const contactsSchema = new Schema(
     contactType: {
       type: String,
       required: true,
-      enum: tipeList,
+      enum: typeList,
       default: 'personal',
     },
   },

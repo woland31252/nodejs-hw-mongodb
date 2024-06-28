@@ -1,4 +1,13 @@
-const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const tipeList = ['work', 'home', 'personal'];
+// src/constants/contacts-constants.js
 
-export { emailRegexp, tipeList };
+const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const typeList = ['work', 'home', 'personal'];
+const fieldList = [
+    "name",
+    "phoneNumber",
+    "email",
+    "createdAt",
+    "updatedAt",
+];
+
+export { emailRegexp, typeList, fieldList };

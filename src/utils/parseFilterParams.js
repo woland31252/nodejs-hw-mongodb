@@ -1,4 +1,5 @@
 // src/utils/parseFilterParams.js
+
 import { typeList } from "../constants/contacts-constants.js";
 
 const parseBoolean = (value) => {
@@ -14,8 +15,13 @@ const parseType = (value) => {
 };
 
 
-const parseFilterParams = () => {
-
+const parseFilterParams = (type, favourite) => {
+  const parsedType = parseType(type);
+  const parsedFavourite = parseBoolean(favourite);
+  return {
+    type: parsedType,
+    favourite: parsedFavourite,
+  };
 };
 
 export default parseFilterParams;

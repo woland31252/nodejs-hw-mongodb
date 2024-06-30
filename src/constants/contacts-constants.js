@@ -6,6 +6,8 @@ const fieldList = [
     "name",
     "phoneNumber",
     "email",
+    "isFavourite",
+    "contactType",
     "createdAt",
     "updatedAt",
 ];

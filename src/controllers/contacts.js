@@ -19,7 +19,7 @@ const getContactsController = async (req, res) => {
   const { sortBy, sortOrder } = parseSortParams(query, fieldList);
   const filter = parseFilterParams(query);
 
-  const contacts = await getAllContacts({
+  const data = await getAllContacts({
     page,
     perPage,
     sortBy,
@@ -30,7 +30,7 @@ const getContactsController = async (req, res) => {
       res.json({
         status: 200,
         message: 'Successfully found contacts!',
-        data: contacts,
+        data: data,
       });
 };
 

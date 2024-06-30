@@ -15,12 +15,12 @@ const parseType = (value) => {
 };
 
 
-const parseFilterParams = (type, favourite) => {
-  const parsedType = parseType(type);
-  const parsedFavourite = parseBoolean(favourite);
+const parseFilterParams = ({ contactType, isFavourite }) => {
+  const parsedType = parseType(contactType);
+  const parsedFavourite = parseBoolean(isFavourite);
   return {
-    type: parsedType,
-    favourite: parsedFavourite,
+    contactType: parsedType,
+    isFavourite: parsedFavourite,
   };
 };
 

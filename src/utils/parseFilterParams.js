@@ -1,25 +1,31 @@
 // src/utils/parseFilterParams.js
 
-import { typeList } from "../constants/contacts-constants.js";
+// import { typeList } from "../constants/contacts-constants.js";
 
 const parseBoolean = (value) => {
-  if (typeof value !== 'string') return;
+  if (typeof value !== 'string') return ;
   if (!['true', 'false'].includes(value)) return;
   const parsedValue = Boolean(value);
-  return parsedValue;
+  if (parsedValue) {
+    return value;
+  }
 };
 
 const parseType = (value) => {
-  if (typeof value !== 'string') return;
-  typeList.includes(value) ? value : null;
+  const type = typeof value;
+  if (typeof value !== 'string') return console.log('type :', type);
+  if (['work', 'home', 'personal'].includes(value)) {
+    return value;
+  }
+  return null;
 };
 
 
-const parseFilterParams = ({ contactType, isFavourite }) => {
-  const parsedType = parseType(contactType);
+const parseFilterParams = ({ type, isFavourite }) => {
+  const parsedType = parseType(type);
   const parsedFavourite = parseBoolean(isFavourite);
   return {
-    contactType: parsedType,
+    type: parsedType,
     isFavourite: parsedFavourite,
   };
 };

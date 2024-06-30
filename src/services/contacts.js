@@ -1,12 +1,12 @@
 import ContactsCollection from '../db/models/Contact.js';
 import calcPaginationData from '../utils/calcPaginationData.js';
 
-const getAllContacts = async ({ page, perPage, sortBy, sortOrder, filter}) => {
+const getAllContacts = async ({ page, perPage, sortBy, sortOrder, filter = {} }) => {
   const skip = (page - 1) * perPage;
   const contactsQuery = ContactsCollection.find();
 
-  if (filter.cotactType) {
-    contactsQuery.where("contactType").equals(filter.contactType);
+  if (filter.type) {
+    contactsQuery.where("contactType").equals(filter.type);
   }
   if (filter.isFavourite) {
     contactsQuery.where("isFavourite").equals(filter.isFavourite);

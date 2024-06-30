@@ -1,6 +1,6 @@
 // src/utils/parseFilterParams.js
 
-// import { typeList } from "../constants/contacts-constants.js";
+import { typeList } from "../constants/contacts-constants.js";
 
 const parseBoolean = (value) => {
   if (typeof value !== 'string') return ;
@@ -14,7 +14,7 @@ const parseBoolean = (value) => {
 const parseType = (value) => {
   const type = typeof value;
   if (typeof value !== 'string') return console.log('type :', type);
-  if (['work', 'home', 'personal'].includes(value)) {
+  if (typeList.includes(value)) {
     return value;
   }
   return null;

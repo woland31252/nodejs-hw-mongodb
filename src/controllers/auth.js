@@ -1,8 +1,8 @@
 // src/controllers/auth.js
 
-import createHttpError from "http-errors.js";
+import createHttpError from "http-errors";
 import { signup, findUser } from "../services/auth.js";
-import { compareHash } from "../utils/hash.js";
+// import { compareHash } from "../utils/hash.js";
 
 const signupController = async (req, res) => {
     const { email } = req.body;

@@ -2,11 +2,12 @@
 
 import { model, Schema } from 'mongoose';
 import { mongooseSaveError, setUpdateSettings } from '../models/hooks.js';
+import { emailRegexp } from '../../constants/contacts-constants.js';
 
 const userSchema = new Schema(
     {
         name: { type: String, required: true, },
-        email: { type: String, required: true, unique: true, },
+        email: { type: String, required: true, match: emailRegexp, unique: true, },
         password: { type: String, required: true, },
     },
     { timestamps: true, versionKey: false, },

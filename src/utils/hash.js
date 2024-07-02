@@ -1,6 +1,6 @@
 // src/utils/hash.js
 
-import { bcrypt } from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 const hashValue = (value) => bcrypt.hash(value, 10);
 

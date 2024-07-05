@@ -3,9 +3,8 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { env } from './utils/env.js';
-// import contactsRouter from '../src/routers/contacts.js';
-// import authRouter from "../src/routers/auth.js";
 import router from '../src/routers/index.js';
 import errorHandler from './middlewares/errorHandler.js';
 import notFoundHandler from './middlewares/notFoundHandler.js';
@@ -23,7 +22,8 @@ export const setupServer = () => {
   );
 
 
-    app.use(cors());
+  app.use(cors());
+  app.use(cookieParser);
 
   app.use(
     pino({
@@ -40,8 +40,6 @@ export const setupServer = () => {
   });
 
   app.use(router);
-
-  // app.use(contactsRouter);
 
   app.use('*', notFoundHandler);
 

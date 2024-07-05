@@ -4,11 +4,12 @@ import Joi from "joi";
 import { emailRegexp, typeList } from "../constants/contacts-constants.js";
 
 const createContactSchema = Joi.object({
-    name: Joi.string().min(3).max(20).required(),
-    phoneNumber: Joi.string().min(3).max(20).required(),
-    email: Joi.string().pattern(emailRegexp),
-    isFavourite: Joi.boolean(),
-    contactType: Joi.string().valid(...typeList),
+  name: Joi.string().min(3).max(20).required(),
+  phoneNumber: Joi.string().min(3).max(20).required(),
+  email: Joi.string().pattern(emailRegexp),
+  isFavourite: Joi.boolean(),
+  contactType: Joi.string().valid(...typeList),
+  userId: Joi.string(),
 });
 
 const updateContactSchema = Joi.object({

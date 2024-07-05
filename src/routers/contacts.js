@@ -11,8 +11,11 @@ import ctrlWrapper from "../utils/ctrlWrapper.js";
 import isValidId from "../middlewares/isValidId.js";
 import validateBody from "../utils/validateBody.js";
 import { createContactSchema, updateContactSchema } from "../validation/contact-validation.js";
+import authenticate from "../middlewares/authenticate.js";
 
 const router = Router();
+
+router.use(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 

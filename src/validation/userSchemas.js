@@ -4,15 +4,15 @@ import Joi from 'joi';
 
 import { emailRegexp } from '../constants/contacts-constants.js';
 
-const userSignupSchema = Joi.object({
+const userLogupSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
 
-const userSigninSchema = Joi.object({
+const userLoginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
 
-export { userSignupSchema, userSigninSchema };
+export { userLogupSchema, userLoginSchema };

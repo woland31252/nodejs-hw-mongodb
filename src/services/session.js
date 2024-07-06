@@ -1,7 +1,7 @@
 // src/services/session.js
 
 import { randomBytes } from "node:crypto";
-import { Session } from "../db/models/session.js";
+import Session from "../db/models/session.js";
 import { FIFTEEN_NINUTES, THIRTY_DAYS } from "../constants/index.js";
 
 const findSession = filter => Session.findOne(filter);

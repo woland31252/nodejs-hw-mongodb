@@ -7,7 +7,7 @@ import {
   createSession,
   findSession,
   deleteSession,
-} from '../../services/session.js';
+} from '../services/session.js';
 
 const setupResponseSession = (
   res,

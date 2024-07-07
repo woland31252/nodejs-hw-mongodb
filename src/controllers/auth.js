@@ -55,7 +55,7 @@ const loginController = async (req, res) => {
     }
 
     const session = await createSession(user._id);
-    setupResponseSession(res, session);
+  setupResponseSession(res, session);
 
     res.json({
       status: 200,

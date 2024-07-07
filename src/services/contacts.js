@@ -5,6 +5,10 @@ const getAllContacts = async ({ page, perPage, sortBy, sortOrder, filter = {} })
   const skip = (page - 1) * perPage;
   const contactsQuery = ContactsCollection.find();
 
+  if (filter.userId) {
+    contactsQuery.where('userId').equals(filter.userId);
+  }
+
   if (filter.type) {
     contactsQuery.where("contactType").equals(filter.type);
   }
@@ -29,8 +33,8 @@ const getAllContacts = async ({ page, perPage, sortBy, sortOrder, filter = {} })
   };
 };
 
-const getContactById = (contactId) => {
-  const contact = ContactsCollection.findById(contactId);
+const getContactById = (filter) => {
+  const contact = ContactsCollection.findOne(filter);
 
   return contact;
 };

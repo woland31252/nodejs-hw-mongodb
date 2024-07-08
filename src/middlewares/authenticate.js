@@ -16,7 +16,7 @@ const authenticate = async (req, res, next) => {
 
     const session = await findSession({ accessToken });
     if (!session) {
-        return next(createHttpError(401, "Session not found ha ha ha"));
+        return next(createHttpError(401, "Session not found"));
     }
 
     const accessTokenExpired = new Date() > new Date(session.accessTokenValidUntil);

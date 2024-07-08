@@ -61,7 +61,9 @@ const updateContact = async (filter, payload, options = {}) => {
 };
 
 const deleteContact = (contactId) => {
-  const contact = ContactsCollection.findOneAndDelete({ _id: contactId });
+  console.log("contact_ID",contactId._id);
+  const contact = ContactsCollection.findOneAndDelete({ _id: contactId._id } );
+
   return contact;
 };
 

@@ -19,4 +19,14 @@ const requestResetEmailSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
 });
 
-export { userLogupSchema, userLoginSchema, requestResetEmailSchema };
+const resetPasswordSchema = Joi.object({
+  password: Joi.string().required(),
+  token: Joi.string().required(),
+});
+
+export {
+  userLogupSchema,
+  userLoginSchema,
+  requestResetEmailSchema,
+  resetPasswordSchema,
+};

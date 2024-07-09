@@ -1,5 +1,6 @@
 // src/services/auth.js
 
+import createHttpError from "http-errors";
 import { User } from "../db/models/user.js";
 import { hashValue } from "../utils/hash.js";
 
@@ -11,6 +12,13 @@ const logup = async (data) => {
     return User.create({ ...data, password: hashPasword });
 };
 
+const requestResetToken = async (email) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+        throw createHttpError(404, "User not found");
+    }
+};
 
-export { findUser, logup };
+
+export { findUser, logup, requestResetToken };
 

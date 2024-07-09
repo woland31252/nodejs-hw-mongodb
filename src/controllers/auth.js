@@ -1,7 +1,7 @@
 // src/controllers/auth.js
 
 import createHttpError from "http-errors";
-import { logup, findUser } from "../services/auth.js";
+import { logup, findUser, requestResetToken } from "../services/auth.js";
 import { compareHash } from "../utils/hash.js";
 import {
   createSession,
@@ -103,4 +103,19 @@ const logoutController = async (req, res) => {
     res.status(204).send();
 };
 
-export { logupController, loginController, refreshController,logoutController };
+const requestResetEmailController = async (req, res) => {
+  await requestResetToken(req.body.email);
+  res.json({
+    message: "Reset password email was successfully sent",
+    status: 200,
+    data: {},
+  });
+};
+
+export {
+  logupController,
+  loginController,
+  refreshController,
+  logoutController,
+  requestResetEmailController,
+};

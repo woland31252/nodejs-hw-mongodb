@@ -14,4 +14,10 @@ const SMTP = {
 
 const TEMPLATES_DIR = path.join(process.cwd(), 'src', 'templates');
 
-export { FIFTEEN_NINUTES, THIRTY_DAYS, SMTP, TEMPLATES_DIR };
+const CLOUDINARY = {
+  CLOUD_NAME: 'CLOUD_NAME',
+  API_KEY: 'API_KEY',
+  API_SECRET: 'API_SECRET',
+};
+
+export { FIFTEEN_NINUTES, THIRTY_DAYS, SMTP, TEMPLATES_DIR, CLOUDINARY };

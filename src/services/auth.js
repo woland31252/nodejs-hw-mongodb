@@ -51,12 +51,19 @@ const requestResetToken = async (email) => {
       link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
     });
 
-    await sendEmail({
+    try {
+        await sendEmail({
         from: env(SMTP.SMTP_FROM),
         to: email,
         subject: "Reset your password",
         html,
     });
+    } catch {
+        throw createHttpError(
+          500, 'Failed to send the email, please try again later.',
+        );
+}
+
 };
 
 const resetPassword = async (payload) => {
@@ -65,7 +72,7 @@ const resetPassword = async (payload) => {
         entries = jwt.verify(payload.token, env('JWT_SECRET'));
     } catch (error) {
         if (error instanceof Error)
-            throw createHttpError(401, error.message);
+            throw createHttpError(401, 'Token is expired or invalid.');
         throw error;
     }
     const user = await User.findOne({

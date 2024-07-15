@@ -1,13 +1,14 @@
 // src/controllers/auth.js
 
 import createHttpError from "http-errors";
-import { logup, findUser, requestResetToken, resetPassword } from "../services/auth.js";
+import { logup, findUser, requestResetToken, resetPassword, loginOrSignupWithGoogle } from "../services/auth.js";
 import { compareHash } from "../utils/hash.js";
 import {
   createSession,
   findSession,
   deleteSession,
 } from '../services/session.js';
+import { generateAuthUrl } from "../utils/googleOAuth.js";
 
 const setupResponseSession = (
   res,
@@ -121,6 +122,30 @@ const resetPasswordController = async (req, res) => {
   });
 };
 
+const getGoogleOAuthUrlController = async (req, res) => {
+  const url = generateAuthUrl();
+  res.json({
+    status: 200,
+    message: 'Successfully get Google OAuth url!',
+    data: {
+      url,
+    }
+  });
+};
+
+const loginWithGoogleController = async (req, res) => {
+  const session = await loginOrSignupWithGoogle(req.body.code);
+  setupResponseSession(res, session);
+
+  res.json({
+    status: 200,
+    message: "Successfully logged in via Google OAuth",
+    data: {
+      accessToken: session.accessToken,
+    },
+  });
+};
+
 export {
   logupController,
   loginController,
@@ -128,4 +153,6 @@ export {
   logoutController,
   requestResetEmailController,
   resetPasswordController,
+  getGoogleOAuthUrlController,
+  loginWithGoogleController,
 };

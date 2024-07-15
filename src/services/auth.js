@@ -2,6 +2,7 @@
 import jwt from 'jsonwebtoken';
 import handlebars from 'handlebars';
 import path from 'path';
+import bcrypt from 'bcrypt';
 import fs from 'node:fs/promises';
 import createHttpError from "http-errors";
 import { env } from '../utils/env.js';
@@ -9,6 +10,10 @@ import { SMTP, TEMPLATES_DIR } from '../constants/index.js';
 import { User } from "../db/models/user.js";
 import { hashValue } from "../utils/hash.js";
 import { sendEmail } from '../utils/sendMail.js';
+import { getFullNameFromGoogleTokenPayload, validateCode } from '../utils/googleOAuth.js';
+import { randomBytes } from 'crypto';
+import { createSession } from './session.js';
+import Session from '../db/models/session.js';
 
 const findUser = filter => User.findOne(filter);
 
@@ -91,6 +96,37 @@ const resetPassword = async (payload) => {
     );
 };
 
+const loginOrSignupWithGoogle = async (code) => {
+    const loginTicket = await validateCode(code);
+    const payload = loginTicket.getPayload();
+    if (!payload) {
+        throw createHttpError(401, "Ha Ha Ha");
+    }
 
-export { findUser, logup, requestResetToken, resetPassword };
+    let user = await User.findOne({
+        email: payload.email,
+    });
+    if (!user) {
+        const password = await bcrypt.hash(randomBytes(10), 10);
+        user = await User.create({
+            email: payload.email,
+            name: getFullNameFromGoogleTokenPayload(payload),
+            password,
+        });
+    }
+    const newSession = createSession();
+    return await Session.create({
+        userId: user._id,
+        ...newSession,
+    });
+};
+
+
+export {
+  findUser,
+  logup,
+  requestResetToken,
+  resetPassword,
+  loginOrSignupWithGoogle,
+};
 

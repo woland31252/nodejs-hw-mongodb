@@ -7,16 +7,25 @@ import {
     userLogupSchema,
     userLoginSchema,
     requestResetEmailSchema,
-    resetPasswordSchema, } from "../validation/userSchemas.js";
+    resetPasswordSchema,
+    loginWithGoogleOAuthSchema,
+} from "../validation/userSchemas.js";
 import {
     logupController,
     loginController,
     refreshController,
     logoutController,
     requestResetEmailController,
-    resetPasswordController, } from "../controllers/auth.js";
+    resetPasswordController,
+    getGoogleOAuthUrlController,
+    loginWithGoogleController,
+} from "../controllers/auth.js";
 
 const router = Router();
+
+router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
+
+router.post('/confirm-oauth', validateBody(loginWithGoogleOAuthSchema), ctrlWrapper(loginWithGoogleController));
 
 router.post('/register', validateBody(userLogupSchema), ctrlWrapper(logupController));
 

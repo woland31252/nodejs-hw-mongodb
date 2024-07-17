@@ -29,8 +29,8 @@ requestBody:
             type: string
             example: "simonenko@example.com"
           isFavourite:
-            type: boolean
             description: "Contact is favourite or not"
+            type: boolean
             example: false
           contactType:
             description: "To which type the contact belongs"
@@ -58,7 +58,7 @@ responses:
           properties:
             status:
               type: integer
-              examle: 201
+              example: 201
             message:
               type: string
               example: Succesfully created a contact

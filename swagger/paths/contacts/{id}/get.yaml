@@ -1,4 +1,4 @@
-# swagger/paths/studens/{id}/get.yaml
+# swagger/paths/contacts/{id}/get.yaml
 tags:
   - Contacts
 summary: Get contact by id
@@ -34,8 +34,8 @@ responses:
             data:
               type: object
               $ref: '../../../components/schemas/contact.yaml'
-  '401':
-    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
 
 
 

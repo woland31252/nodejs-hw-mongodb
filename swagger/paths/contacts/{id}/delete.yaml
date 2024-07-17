@@ -1,0 +1,31 @@
+# swagger/paths/contacts/{id}/delete.yaml
+
+tags:
+  -  Contacts
+summary: Delete contact by Id
+operationId: deleteContact
+description: 'Delete contact by Id'
+security:
+  -  bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '66748ffee5aa890952930a08'
+responses:
+  '204':
+    description: Deleting contact by id
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              type: integer
+              example: 204
+  '404':
+    $ref: '../../../components/responses/404.yaml'

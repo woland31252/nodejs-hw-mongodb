@@ -17,31 +17,31 @@ requestBody:
           - phoneNumber
         properties:
           name:
-            type: string
             description: "Contact's name"
-            examle: "Bohdan Symonenko"
+            type: string
+            example: "Bohdan Symonenko"
           phoneNumber:
-            type: string
             description: "Contact's phone number"
-            examle: "+380970445522"
-          email:
             type: string
+            example: "+380970445522"
+          email:
             description: "Contact's email adress"
-            examle: "simonenko@example.com"
+            type: string
+            example: "simonenko@example.com"
           isFavourite:
             type: boolean
             description: "Contact is favourite or not"
-            examle: false
+            example: false
           contactType:
-            description: 'To which type the contact belongs'
+            description: "To which type the contact belongs"
             type: string
-            enam: ['work', 'home', 'personal']
+            enum: ['work', 'home', 'personal']
           userId:
-            description: 'User's Id'
+            description: "User's Id"
             type: string
-            example: '668d9aeb947de96d1a0d11a3'
+            example: "668d9aeb947de96d1a0d11a3"
           photo:
-            description: 'Link to contact's photo'
+            description: "Link to contact's photo"
             type: string
             format: binary
 responses:

@@ -1,6 +1,4 @@
-# swagger/components/responses/404.yaml
-
-description: Not found error
+description: Еhe user does not exist
 content:
   application/json:
     schema:
@@ -15,7 +13,7 @@ content:
           example: 404
         message:
           type: string
-          example: Contact not found
+          example: "Such a contact does not exist"
         data:
           type: object
           required:
@@ -23,4 +21,4 @@ content:
           properties:
             message:
               type: string
-              example: 'Contact not found'
+              example: "Such a contact does not exist"

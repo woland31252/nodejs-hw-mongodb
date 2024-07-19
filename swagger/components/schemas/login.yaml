@@ -1,0 +1,8 @@
+type: object
+required:
+  - accessToken
+properties:
+  accessToken:
+    description: "Token for user's access to own profile"
+    type: string
+    example: "g0jMhSiYZXfCbhqRo0ocB4EAboN/TSZZaRyVFnvI"
